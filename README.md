@@ -6,4 +6,4 @@ This repo includes all my steps in learning laravel with the help of Jeffry Way'
 
 ## Self Notes
 
-- Review fully the props and attributes it differs from React's props ep4
+- Review fully the props and attributes it differs from React's props Eps 4,5 and 6
