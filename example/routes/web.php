@@ -17,8 +17,8 @@ Route::get('/jobs', function () {
     // eager loading - one single query
     // $jobs = Job::with('employer')->get();
     // $jobs = Job::with('employer')->paginate(3);
-    // $jobs = Job::with('employer')->cursorPaginate(5); // fastest for big data but wont show page
-    $jobs = Job::with('employer')->simplePaginate(5); // faster than paginate
+    // $jobs = Job::with('employer')->simplePaginate(5); // faster than paginate
+    $jobs = Job::with('employer')->cursorPaginate(8); // fastest for big data but wont show page
 
 
     return view('jobs', [
