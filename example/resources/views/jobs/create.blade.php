@@ -33,8 +33,13 @@
 
                                 <input type="text" name="title" id="title"
                                     class="block flex-1 border-0 bg-transparent px-3 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                    placeholder="Shift Leader">
+                                    placeholder="Shift Leader" required>
                             </div>
+
+                            {{-- show validations under the input --}}
+                            @error('title')
+                                <p class="mt-1 text-xs font-semibold text-red-500">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
 
@@ -46,12 +51,27 @@
 
                                 <input type="text" name="salary" id="salary"
                                     class="block flex-1 border-0 bg-transparent px-3 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                    placeholder="$80,000 Per Year">
+                                    placeholder="$80,000 Per Year" required>
                             </div>
                         </div>
-                    </div>
 
+                        {{-- show validations under the input --}}
+                        @error('salary')
+                            <p class="mt-1 text-xs font-semibold text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
+
+                {{-- validation custom --}}
+                {{-- <div class="mt-10">
+                    @if ($errors->any())
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li class="italic text-red-500">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div> --}}
             </div>
         </div>
 

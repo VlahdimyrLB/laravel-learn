@@ -16,7 +16,7 @@ class Job extends Model
     // protected $fillable = ['employer_id', 'title', 'salary'];
 
     // fields that should be guarded and cannot be mass assigned
-    protected $guarded = [];
+    protected $guarded = [];    
 
     public function employer()
     {
