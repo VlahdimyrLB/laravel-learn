@@ -12,7 +12,11 @@ class Job extends Model
 
     protected $table = 'job_listings';
 
-    protected $fillable = ['title', 'salary'];
+    // fields that can be fillable or mass assigned
+    // protected $fillable = ['employer_id', 'title', 'salary'];
+
+    // fields that should be guarded and cannot be mass assigned
+    protected $guarded = [];
 
     public function employer()
     {
