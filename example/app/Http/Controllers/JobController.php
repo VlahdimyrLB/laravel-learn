@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class JobController extends Controller
 {
@@ -47,6 +50,31 @@ class JobController extends Controller
 
     public function edit(Job $job)
     {
+        // inline authorization
+        // if logged in
+        // if (Auth::guest()) {
+        //     return redirect('/login');
+        // }
+        // code above is now irrelevant because of the gate
+
+        // if the authenticated user is the user created the job
+        // is() used to compare
+        // if ($job->employer->user->isNot(Auth::user())) {
+        //     abort(403);
+        // }
+        // code snippet above is already inside the gate located in App Service Provider
+
+        // alternative way using can and connot
+        // if the user can edit the job
+        // if (Auth::user()->can('edit-job', $job)) {
+        //     dd('failure');
+        // }
+        // go to show.blade for reference
+
+        // we can also use Gate::allows or denies
+        // Gate::authorize('edit-job', $job);
+        // removed the code because the middleware is defined in routes
+
         return view('jobs.edit', ['job' => $job]);
     }
 

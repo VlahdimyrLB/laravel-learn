@@ -17,19 +17,30 @@ use App\Models\Job;
 Route::view('/', 'home');
 Route::view('/contact', 'contact');
 
+
+// apply the auth middle only in these routes
+// we can also use except()
+// Route::resource('jobs', JobController::class)->only(['index', 'show'])->middleware('auth');
+// code commented because the single route declaration is better for these case
+
 // NEW VERSION with Controller Classess
 Route::get('/jobs', [JobController::class, 'index']);
 Route::get('/jobs/create', [JobController::class, 'create']);
-Route::get('/jobs/{job}', [JobController::class, 'show']);
-Route::post('/jobs', [JobController::class, 'store']);
-Route::get('/jobs/{job}/edit', [JobController::class, 'edit']);
+Route::get('/jobs/{job}', [JobController::class, 'show'])->middleware('auth');
+Route::post('/jobs', [JobController::class, 'store'])->middleware('auth');
+
+// means you need to be signed in and have the permission to edit the job ([authenticate, authorize])
+Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])
+    ->middleware('auth')
+    ->can('edit', 'job'); // find the jobpolicy and run the edit function authorization
+
 Route::patch('/jobs/{job}', [JobController::class, 'update']);
 Route::delete('/jobs/{job}', [JobController::class, 'destroy']);
 
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
 
-Route::get('/login', [SessionController::class, 'create']);
+Route::get('/login', [SessionController::class, 'create'])->name('login'); // named routes
 Route::post('/login', [SessionController::class, 'store']);
 Route::post('/logout', [SessionController::class, 'destroy']);
 
