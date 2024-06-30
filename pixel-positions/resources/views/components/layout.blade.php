@@ -27,16 +27,25 @@
 
             <div class="space-x-6 font-bold">
                 <a href="#">Jobs</a>
-                <a href="#">Carrers</a>
+                <a href="#">Careers</a>
                 <a href="#">Salaries</a>
                 <a href="#">Companies</a>
             </div>
 
             @auth
-                <div>
-                    <a href="/jobs/create">
-                        Post a Job
-                    </a>
+                <div class="flex space-x-6">
+                    <div>
+                        <a href="/jobs/create">
+                            Post a Job
+                        </a>
+                    </div>
+
+                    <form method="POST" action="/logout">
+                        @csrf
+                        @method('DELETE')
+
+                        <button>Log Out</button>
+                    </form>
                 </div>
             @endauth
 

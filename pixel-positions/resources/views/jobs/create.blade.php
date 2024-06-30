@@ -4,7 +4,7 @@
     <x-forms.form method="POST" action="/jobs">
         <x-forms.input label="Title" name="title" placeholder="CEO" />
         <x-forms.input label="Salary" name="salary" placeholder="$100, 000" />
-        <x-forms.input label="Location" name="location" placeholder="winter Park, Florida" />
+        <x-forms.input label="Location" name="location" placeholder="Winter Park, Florida" />
 
         <x-forms.select label="Schedule" name="schedule">
             <option>Part Time</option>
