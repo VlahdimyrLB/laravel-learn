@@ -21,11 +21,12 @@ class JobController extends Controller
         $jobs = Job::latest()->get()->groupBy('featured');
 
         return view('jobs.index', [
-            'jobs' => $jobs[0],
-            'featuredJobs' => $jobs[1],
+            'jobs' => $jobs->get(0, collect()), // Return an empty collection if key 0 does not exist
+            'featuredJobs' => $jobs->get(1, collect()), // Return an empty collection if key 1 does not exist
             'tags' => Tag::all()
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
